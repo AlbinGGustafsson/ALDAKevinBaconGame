@@ -24,7 +24,7 @@ public class Game {
         System.out.println("Starting to load the graph file");
         GraphLoader graphLoader = new GraphLoader();
         long startTime = System.currentTimeMillis();
-        Map<String, Set<String>> graphMap = graphLoader.loadGraphFile("C:\\Users\\Albin\\IdeaProjects\\Year2\\ALDAKevinBaconGame\\src\\main\\resources\\moviedata.txt");
+        Map<String, Set<String>> graphMap = graphLoader.loadGraphFile("src/main/resources/moviedata.txt");
         long endTime = System.currentTimeMillis();
         System.out.printf("It took %d.%d seconds to load the graph file.%n", (endTime - startTime) / 1000, (endTime - startTime) % 1000);
         System.out.printf("The program had %d.%d seconds to spare.%n%n", 120 - (endTime - startTime) / 1000, 1000 - (endTime - startTime) % 1000);
