@@ -8,6 +8,7 @@ public class Game {
     public static void main(String[] args) {
         new Game().run();
     }
+
     private void run() {
         startUp();
         printInstructions();
@@ -44,10 +45,11 @@ public class Game {
                 System.out.println("Could not find the actor");
                 continue;
             }
-
-            printResult(path, input);
-            long endTime = System.currentTimeMillis();
-            System.out.printf("It took %d.%d seconds to find the path.%n", (endTime - startTime) / 1000, (endTime - startTime) % 1000);
+            if (!input.equalsIgnoreCase("exit")) {
+                printResult(path, input);
+                long endTime = System.currentTimeMillis();
+                System.out.printf("It took %d.%d seconds to find the path.%n", (endTime - startTime) / 1000, (endTime - startTime) % 1000);
+            }
         } while (!input.equalsIgnoreCase("exit"));
     }
 
