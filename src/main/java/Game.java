@@ -38,14 +38,16 @@ public class Game {
         do {
             System.out.print("Name ?> ");
             input = scanner.nextLine();
-            long startTime = System.currentTimeMillis();
 
-            List<String> path = baconGraph.shortestPath(KEVIN_BACON, input);
-            if (path.isEmpty()) {
-                System.out.println("Could not find the actor");
-                continue;
-            }
             if (!input.equalsIgnoreCase("exit")) {
+                long startTime = System.currentTimeMillis();
+
+                List<String> path = baconGraph.shortestPath(KEVIN_BACON, input);
+                if (path.isEmpty()) {
+                    System.out.println("Could not find the actor");
+                    continue;
+                }
+
                 printResult(path, input);
                 long endTime = System.currentTimeMillis();
                 System.out.printf("It took %d.%d seconds to find the path.%n", (endTime - startTime) / 1000, (endTime - startTime) % 1000);
