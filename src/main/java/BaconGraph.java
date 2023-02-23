@@ -10,14 +10,18 @@ public class BaconGraph {
     }
 
     /**
-     * Finds the shortest path between two nodes in the graph using Breadth-First Search.
+     * Genererar den kortaste vägen mellan två noder i grafen med hjälp av bredden först sökning.
+     * Första sökningen bygger upp vägar till Kevin Bacon tills den hittar slutnoden.
+     * Dessa sparas i en map visited som kopplar ihop noder med dess föregående nod. Följande sökningar kollar först
+     * om slutnoden finns som nyckel i visited och skippar då hela sökningen och kan generera vägen direkt. Annars sker
+     * en ny sökning.
      *
-     * @param startNode the starting node
-     * @param endNode   the ending node
-     * @return a list of nodes in the shortest path from startNode to endNode
+     * @param startNode startnoden
+     * @param endNode   slutnoden
+     * @return En lista med noder för den kortaste vägen, tom lista om ingen väg fanns.
      */
+    //TODO: Factchecka att första sökningen bara bygger upp delar av alla vägar till Kevin Bacon i grafen.
     public List<String> shortestPath(String startNode, String endNode) {
-        // create a map to keep track of visited nodes and their parents
 
         if (visited.containsKey(endNode)) {
             return gatherPath(endNode);
@@ -27,15 +31,12 @@ public class BaconGraph {
 
         visited.put(startNode, null);
 
-        // create a queue for BFS
         Queue<String> queue = new LinkedList<>();
         queue.add(startNode);
 
-        // BFS algorithm
         while (!queue.isEmpty()) {
             String current = queue.poll();
             if (current.equals(endNode)) {
-                // found the end node, construct the path and return it
                 return gatherPath(endNode);
             }
             for (String neighbor : graphMap.get(current)) {
@@ -45,10 +46,16 @@ public class BaconGraph {
                 }
             }
         }
-        // no path found between startNode and endNode
         return path;
     }
 
+    /**
+     * Traverserar visited baklänges från den eftersökta noden genom dess föregående noder
+     * och lägger vägen i path, tills den når Kevin Bacon.
+     *
+     * @param endNode den eftersökta noden
+     * @return Listan path med noder för den kortaste vägen.
+     */
     public List<String> gatherPath(String endNode) {
         LinkedList<String> path = new LinkedList<>();
         String node = endNode;
@@ -58,5 +65,4 @@ public class BaconGraph {
         }
         return path;
     }
-
 }
