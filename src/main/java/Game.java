@@ -16,47 +16,46 @@ public class Game {
         System.exit(0);
     }
 
-    private void printInstructions() {
-        System.out.println("Enter a name of a actor to see it's Kevin Bacon score.");
-        System.out.println("Enter exit to close the program.");
-    }
-
     private void startUp() {
         System.out.println("Starting to load the graph file");
         GraphLoader graphLoader = new GraphLoader();
         long startTime = System.currentTimeMillis();
         Map<String, Set<String>> graphMap = graphLoader.loadGraphFile("src/main/resources/moviedata.txt");
         long endTime = System.currentTimeMillis();
-        System.out.printf("It took %d.%d seconds to load the graph file.%n", (endTime - startTime) / 1000, (endTime - startTime) % 1000);
-        System.out.printf("The program had %d.%d seconds to spare.%n%n", 120 - (endTime - startTime) / 1000, 1000 - (endTime - startTime) % 1000);
+        System.out.printf("It took %.3f seconds to load the graph file.%n", (endTime - startTime) / 1000.0);
+        System.out.printf("The program had %.3f seconds to spare.%n%n", 120 - (endTime - startTime) / 1000.0);
 
         baconGraph = new BaconGraph(graphMap);
+    }
+
+    private void printInstructions() {
+        System.out.println("Enter exit to close the program.");
+        System.out.println("Enter the name of an actor to see it's Kevin Bacon score.");
     }
 
     private void inputLoop() {
         String input;
         do {
-            System.out.print("Name ?> ");
+            System.out.print("Name?> ");
             input = scanner.nextLine();
 
             if (!input.equalsIgnoreCase("exit")) {
                 long startTime = System.currentTimeMillis();
-
                 List<String> path = baconGraph.shortestPath(KEVIN_BACON, input);
+                long endTime = System.currentTimeMillis();
+
                 if (path.isEmpty()) {
                     System.out.println("Could not find the actor");
                     continue;
                 }
-
                 printResult(path, input);
-                long endTime = System.currentTimeMillis();
-                System.out.printf("It took %d.%d seconds to find the path.%n", (endTime - startTime) / 1000, (endTime - startTime) % 1000);
+                System.out.printf("It took %.3f seconds to find the path.%n", (endTime - startTime) / 1000.0);
             }
         } while (!input.equalsIgnoreCase("exit"));
     }
 
     private void printResult(List<String> path, String input) {
-        System.out.printf("Kevin Bacon Score for '%s' is: %d%n", input, path.size() / 2);
+        System.out.printf("Kevin Bacon score for '%s' is: %d%n", input, path.size() / 2);
 
         Iterator<String> iterator = path.listIterator();
         while (iterator.hasNext()) {
@@ -73,7 +72,5 @@ public class Game {
 //            }
 //        }
         System.out.println();
-
     }
-
 }

@@ -51,5 +51,4 @@ public class BaconGraph {
         // no path found between startNode and endNode
         return path;
     }
-
 }
