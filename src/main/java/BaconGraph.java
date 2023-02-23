@@ -20,7 +20,6 @@ public class BaconGraph {
         // create a map to keep track of visited nodes and their parents
 
         if (visited.containsKey(endNode)) {
-            System.out.println("Hittad");
             return gatherPath(endNode);
         }
 
