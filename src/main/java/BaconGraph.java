@@ -5,7 +5,6 @@ public class BaconGraph {
     private Map<String, Set<String>> graphMap;
     private Map<String, String> visited = new HashMap<>();
 
-
     public BaconGraph(Map<String, Set<String>> graphMap) {
         this.graphMap = graphMap;
     }
@@ -20,6 +19,11 @@ public class BaconGraph {
     public List<String> shortestPath(String startNode, String endNode) {
         // create a map to keep track of visited nodes and their parents
 
+        if (visited.containsKey(endNode)) {
+            System.out.println("Hittad");
+            return gatherPath(endNode);
+        }
+
         LinkedList<String> path = new LinkedList<>();
 
         visited.put(startNode, null);
@@ -33,12 +37,7 @@ public class BaconGraph {
             String current = queue.poll();
             if (current.equals(endNode)) {
                 // found the end node, construct the path and return it
-                String node = endNode;
-                while (node != null) {
-                    path.offerFirst(node);
-                    node = visited.get(node);
-                }
-                return path;
+                return gatherPath(endNode);
             }
             for (String neighbor : graphMap.get(current)) {
                 if (!visited.containsKey(neighbor)) {
@@ -51,8 +50,7 @@ public class BaconGraph {
         return path;
     }
 
-    public List<String> test(String endNode){
-
+    public List<String> gatherPath(String endNode) {
         LinkedList<String> path = new LinkedList<>();
         String node = endNode;
         while (node != null) {
@@ -61,6 +59,5 @@ public class BaconGraph {
         }
         return path;
     }
-
 
 }

@@ -49,7 +49,6 @@ public class Game {
                     continue;
                 }
                 printResult(path, input);
-                printResult(baconGraph.test("<a>'Hass' Nunes, Harvey"), "Hass' Nunes, Harvey");
                 System.out.printf("It took %.3f seconds to find the path.%n", (endTime - startTime) / 1000.0);
             }
         } while (!input.equalsIgnoreCase("exit"));
