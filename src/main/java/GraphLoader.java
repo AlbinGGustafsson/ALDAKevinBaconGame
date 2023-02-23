@@ -7,7 +7,17 @@ import java.util.Map;
 import java.util.Set;
 
 public class GraphLoader {
-    public Map<String, Set<String>> loadGraphFile(String filePath) {
+
+    /**
+     * Skapar en graf utifrån det angivna dokumentet.
+     * Läser igenom dokumentet en rad i taget. Läser av flaggan som står först som avgör ifall raden representerar
+     * en skådespelare eller film. Lägger in dessa som noder i grafen.
+     *
+     * @param filePath   Sökväg till dokumentet med skådespelare och filmer.
+     *
+     * @return Den genererade grafen skapad från dokumentet.
+     */
+    public BaconGraph loadGraphFile(String filePath) {
 
         Map<String, Set<String>> graph = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -15,20 +25,17 @@ public class GraphLoader {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.charAt(1) == 'a') {
-                    actor = line.substring(3);
+                    actor = line;
                     graph.putIfAbsent(actor, new HashSet<>());
                 } else {
-                    String movieTitle = line.substring(3);
-                    graph.putIfAbsent(movieTitle, new HashSet<>());
-                    graph.get(movieTitle).add(actor);
-                    graph.get(actor).add(movieTitle);
+                    graph.putIfAbsent(line, new HashSet<>());
+                    graph.get(line).add(actor);
+                    graph.get(actor).add(line);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return graph;
+        return new BaconGraph(graph);
     }
-
 }
