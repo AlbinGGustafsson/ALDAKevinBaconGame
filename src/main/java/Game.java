@@ -6,7 +6,22 @@ public class Game {
     private BaconGraph baconGraph;
 
     public static void main(String[] args) {
-        new Game().run();
+        //new Game().run();
+        new Game().highestBaconNumber();
+    }
+
+    private void highestBaconNumber() {
+        startUp();
+        int bNr = 0;
+        for (String s : baconGraph.getNodes()) {
+            if (s.charAt(1) == 'a') {
+                List<String> path = baconGraph.shortestPath(KEVIN_BACON, s);
+                if (path.size() / 2 >= bNr) {
+                    bNr = path.size() / 2;
+                    System.out.printf("%s: %d%n", s, bNr);
+                }
+            }
+        }
     }
 
     /**

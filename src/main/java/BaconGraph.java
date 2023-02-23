@@ -66,4 +66,10 @@ public class BaconGraph {
         }
         return path;
     }
+
+
+    public Set<String> getNodes(){
+        return graphMap.keySet();
+    }
+
 }
