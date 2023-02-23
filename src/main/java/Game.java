@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Game {
-    public static final String KEVIN_BACON = "Bacon, Kevin (I)";
+    public static final String KEVIN_BACON = "<a>Bacon, Kevin (I)";
     private Scanner scanner = new Scanner(System.in);
     private BaconGraph baconGraph;
 
@@ -41,7 +41,7 @@ public class Game {
 
             if (!input.equalsIgnoreCase("exit")) {
                 long startTime = System.currentTimeMillis();
-                List<String> path = baconGraph.shortestPath(KEVIN_BACON, input);
+                List<String> path = baconGraph.shortestPath(KEVIN_BACON, "<a>" + input);
                 long endTime = System.currentTimeMillis();
 
                 if (path.isEmpty()) {
@@ -59,18 +59,11 @@ public class Game {
 
         Iterator<String> iterator = path.listIterator();
         while (iterator.hasNext()) {
-            System.out.print(iterator.next());
+            System.out.print(iterator.next().substring(3));
             if (iterator.hasNext()) {
                 System.out.print(" -> ");
             }
         }
-
-//        for (int i = 0; i < path.size(); i++) {
-//            System.out.print(path.get(i));
-//            if (i != path.size() - 1) {
-//                System.out.print(" -> ");
-//            }
-//        }
         System.out.println();
     }
 }

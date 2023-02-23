@@ -15,13 +15,12 @@ public class GraphLoader {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.charAt(1) == 'a') {
-                    actor = line.substring(3);
+                    actor = line;
                     graph.putIfAbsent(actor, new HashSet<>());
                 } else {
-                    String movieTitle = line.substring(3);
-                    graph.putIfAbsent(movieTitle, new HashSet<>());
-                    graph.get(movieTitle).add(actor);
-                    graph.get(actor).add(movieTitle);
+                    graph.putIfAbsent(line, new HashSet<>());
+                    graph.get(line).add(actor);
+                    graph.get(actor).add(line);
                 }
             }
         } catch (IOException e) {
