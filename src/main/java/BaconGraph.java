@@ -4,7 +4,7 @@ public class BaconGraph {
 
     private Map<String, Set<String>> graphMap;
     private Map<String, String> visited = new HashMap<>();
-    private Queue<String> queue = new LinkedList<>();
+    private Queue<String> queue;
 
     public BaconGraph(Map<String, Set<String>> graphMap) {
         this.graphMap = graphMap;
@@ -30,6 +30,11 @@ public class BaconGraph {
 
         //Har det redan gjorts en sökning så hoppar vi över detta och fortsätter sökningen från den första
         if (!visited.containsKey(startNode)) {
+
+            //Om man skulle vilja använda någon annan än KB som startNode i samma programkörning
+            //Så behöver man skapa en ny hashmap.
+            visited = new HashMap<>();
+
             visited.put(startNode, null);
             queue = new LinkedList<>();
             queue.add(startNode);
