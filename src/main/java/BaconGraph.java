@@ -4,7 +4,7 @@ public class BaconGraph {
 
     private Map<String, Set<String>> graphMap;
     private Map<String, String> visited = new HashMap<>();
-    Queue<String> queue = new LinkedList<>();
+    private Queue<String> queue = new LinkedList<>();
 
     public BaconGraph(Map<String, Set<String>> graphMap) {
         this.graphMap = graphMap;
