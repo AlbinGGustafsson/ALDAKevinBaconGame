@@ -4,6 +4,7 @@ public class BaconGraph {
 
     private Map<String, Set<String>> graphMap;
     private Map<String, String> visited = new HashMap<>();
+    Queue<String> queue = new LinkedList<>();
 
     public BaconGraph(Map<String, Set<String>> graphMap) {
         this.graphMap = graphMap;
@@ -27,12 +28,12 @@ public class BaconGraph {
             return gatherPath(endNode);
         }
 
-        LinkedList<String> path = new LinkedList<>();
-
-        visited.put(startNode, null);
-
-        Queue<String> queue = new LinkedList<>();
-        queue.add(startNode);
+        //Har det redan gjorts en sökning så hoppar vi över detta och fortsätter sökningen från den första
+        if (!visited.containsKey(startNode)) {
+            visited.put(startNode, null);
+            queue = new LinkedList<>();
+            queue.add(startNode);
+        }
 
         while (!queue.isEmpty()) {
             String current = queue.poll();
@@ -46,7 +47,7 @@ public class BaconGraph {
                 }
             }
         }
-        return path;
+        return Collections.emptyList();
     }
 
     /**
