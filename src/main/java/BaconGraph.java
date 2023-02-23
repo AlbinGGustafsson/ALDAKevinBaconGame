@@ -3,6 +3,8 @@ import java.util.*;
 public class BaconGraph {
 
     private Map<String, Set<String>> graphMap;
+    private Map<String, String> visited = new HashMap<>();
+
 
     public BaconGraph(Map<String, Set<String>> graphMap) {
         this.graphMap = graphMap;
@@ -18,8 +20,8 @@ public class BaconGraph {
     public List<String> shortestPath(String startNode, String endNode) {
         // create a map to keep track of visited nodes and their parents
 
-        List<String> path = new ArrayList<>();
-        Map<String, String> visited = new HashMap<>();
+        LinkedList<String> path = new LinkedList<>();
+
         visited.put(startNode, null);
 
         // create a queue for BFS
@@ -31,14 +33,11 @@ public class BaconGraph {
             String current = queue.poll();
             if (current.equals(endNode)) {
                 // found the end node, construct the path and return it
-
                 String node = endNode;
                 while (node != null) {
-                    path.add(node);
-                    //path.add(0, node);
+                    path.offerFirst(node);
                     node = visited.get(node);
                 }
-                Collections.reverse(path);
                 return path;
             }
             for (String neighbor : graphMap.get(current)) {
@@ -51,4 +50,17 @@ public class BaconGraph {
         // no path found between startNode and endNode
         return path;
     }
+
+    public List<String> test(String endNode){
+
+        LinkedList<String> path = new LinkedList<>();
+        String node = endNode;
+        while (node != null) {
+            path.offerFirst(node);
+            node = visited.get(node);
+        }
+        return path;
+    }
+
+
 }
