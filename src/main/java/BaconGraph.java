@@ -37,14 +37,15 @@ public class BaconGraph {
 
         while (!queue.isEmpty()) {
             String current = queue.poll();
-            if (current.equals(endNode)) {
-                return gatherPath(endNode);
-            }
+            //Lägger till grannar innan man kollar om det är rätt för att det ska bli korrekt i en eventuell nästa sökning.
             for (String neighbor : graphMap.get(current)) {
                 if (!visited.containsKey(neighbor)) {
                     visited.put(neighbor, current);
                     queue.add(neighbor);
                 }
+            }
+            if (current.equals(endNode)) {
+                return gatherPath(endNode);
             }
         }
         return Collections.emptyList();
