@@ -9,9 +9,6 @@ public class Game {
         new Game().run();
     }
 
-    /**
-     * Kör programmet.
-     */
     private void run() {
         startUp();
         printInstructions();
@@ -19,9 +16,6 @@ public class Game {
         System.exit(0);
     }
 
-    /**
-     * Skapar en graf utifrån en graphLoader.
-     */
     private void startUp() {
         System.out.println("Starting to load the graph file");
         GraphLoader graphLoader = new GraphLoader();
@@ -32,9 +26,6 @@ public class Game {
         System.out.printf("The program had %.3f seconds to spare.%n%n", 120 - (endTime - startTime) / 1000.0);
     }
 
-    /**
-     * Skriver ut instruktionerna för programmet.
-     */
     private void printInstructions() {
         System.out.println("Enter exit to close the program.");
         System.out.println("Enter the name of an actor to see it's Kevin Bacon score.");

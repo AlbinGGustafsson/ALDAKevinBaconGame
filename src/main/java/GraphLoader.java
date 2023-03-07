@@ -26,7 +26,7 @@ public class GraphLoader {
             while ((line = br.readLine()) != null) {
                 if (line.charAt(1) == 'a') {
                     actor = line;
-                    graph.putIfAbsent(actor, new HashSet<>());
+                    graph.put(actor, new HashSet<>());
                 } else {
                     graph.putIfAbsent(line, new HashSet<>());
                     graph.get(line).add(actor);
