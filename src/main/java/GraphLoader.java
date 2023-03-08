@@ -13,7 +13,7 @@ public class GraphLoader {
      * Läser igenom dokumentet en rad i taget. Läser av flaggan som står först som avgör ifall raden representerar
      * en skådespelare eller film. Lägger in dessa som noder i grafen.
      *
-     * @param filePath   Sökväg till dokumentet med skådespelare och filmer.
+     * @param filePath Sökväg till dokumentet med skådespelare och filmer.
      *
      * @return Den genererade grafen skapad från dokumentet.
      */
