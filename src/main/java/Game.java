@@ -1,4 +1,7 @@
 import java.util.*;
+//'Atu'ake, Taipaleti
+//'Colibri'Viera, Gil
+//Diperro, Ben
 
 public class Game {
     public static final String KEVIN_BACON = "<a>Bacon, Kevin (I)";

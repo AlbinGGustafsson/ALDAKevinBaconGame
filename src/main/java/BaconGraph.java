@@ -23,7 +23,7 @@ public class BaconGraph {
      */
     public List<String> shortestPath(String startNode, String endNode) {
 
-        //Har det redan gjorts en sökning eller om vi vill ha en ny startnod så hoppar vi över detta och fortsätter sökningen från den tidigare sökningen
+        //Har det redan gjorts en sökning eller om vi inte vill ha en ny startnod så hoppar vi över detta och fortsätter sökningen från den tidigare sökningen
         if (visited == null || !visited.containsKey(startNode)) {
             visited = new HashMap<>();
             visited.put(startNode, null);
